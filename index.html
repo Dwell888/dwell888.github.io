@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Site Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Portfolio</title>
   <style>
-    /* Basic Reset */
-    *, *::before, *::after {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Body Styling */
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
       color: #333;
       min-height: 100vh;
@@ -23,7 +20,6 @@
       flex-direction: column;
     }
 
-    /* Header Styling */
     header {
       background: rgba(255, 255, 255, 0.9);
       padding: 1rem 2rem;
@@ -52,7 +48,6 @@
       color: #007acc;
     }
 
-    /* Main content styling */
     main {
       flex: 1;
       padding: 2rem;
@@ -92,7 +87,50 @@
       background-color: #005fa3;
     }
 
-    /* Footer styling */
+    #projects {
+      padding: 2rem 0;
+    }
+
+    #projects h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 1.5rem;
+      text-align: left;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .project h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
     footer {
       background: rgba(255, 255, 255, 0.9);
       text-align: center;
@@ -100,48 +138,104 @@
       font-size: 0.9rem;
       box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
     }
+
+    /* Scroll Animation */
+    .reveal {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Your Site Title</h1>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>Your Portfolio</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
     <section class="hero" id="home">
       <h2>Welcome to My Website</h2>
-      <p>This is a beautifully designed landing page built using modern HTML and CSS for GitHub Pages.</p>
-      <a href="#about" class="cta-btn">Learn More</a>
-    </section>
-
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget ex convallis, vestibulum augue a, dapibus nulla. Integer nec lorem ac lacus imperdiet interdum.</p>
+      <p>This is a beautifully designed landing page built using HTML and CSS for GitHub Pages.</p>
+      <a href="#projects" class="cta-btn">See Projects</a>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
-      <p>Explore some of my recent work. Each project highlights different skills and approaches to solving creative challenges.</p>
+      <div class="projects-grid">
+        <!-- Repeat this project card 9 times -->
+        <a href="https://example.com/project1" class="project" target="_blank">
+          <h3>Project 1</h3>
+          <p>Short description of project 1.</p>
+        </a>
+        <a href="https://example.com/project2" class="project" target="_blank">
+          <h3>Project 2</h3>
+          <p>Short description of project 2.</p>
+        </a>
+        <a href="https://example.com/project3" class="project" target="_blank">
+          <h3>Project 3</h3>
+          <p>Short description of project 3.</p>
+        </a>
+        <a href="https://example.com/project4" class="project" target="_blank">
+          <h3>Project 4</h3>
+          <p>Short description of project 4.</p>
+        </a>
+        <a href="https://example.com/project5" class="project" target="_blank">
+          <h3>Project 5</h3>
+          <p>Short description of project 5.</p>
+        </a>
+        <a href="https://example.com/project6" class="project" target="_blank">
+          <h3>Project 6</h3>
+          <p>Short description of project 6.</p>
+        </a>
+        <a href="https://example.com/project7" class="project" target="_blank">
+          <h3>Project 7</h3>
+          <p>Short description of project 7.</p>
+        </a>
+        <a href="https://example.com/project8" class="project" target="_blank">
+          <h3>Project 8</h3>
+          <p>Short description of project 8.</p>
+        </a>
+        <a href="https://example.com/project9" class="project" target="_blank">
+          <h3>Project 9</h3>
+          <p>Short description of project 9.</p>
+        </a>
+      </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" style="text-align:center; padding: 2rem;">
       <h2>Contact</h2>
-      <p>If you'd like to get in touch, feel free to email me at <a href="mailto:youremail@example.com">youremail@example.com</a>.</p>
+      <p>You can reach me at <a href="mailto:youremail@example.com">youremail@example.com</a>.</p>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Your Name. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Scroll-based animation logic
+    const projects = document.querySelectorAll('.project');
+
+    function revealOnScroll() {
+      const triggerBottom = window.innerHeight * 0.9;
+
+      projects.forEach(project => {
+        const projectTop = project.getBoundingClientRect().top;
+
+        if (projectTop < triggerBottom) {
+          project.classList.add('reveal');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
 </body>
 </html>
