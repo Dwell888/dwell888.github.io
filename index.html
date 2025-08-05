@@ -99,8 +99,8 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
 
     .project {
@@ -109,26 +109,34 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
       padding: 1.5rem;
-      text-align: left;
+      text-align: center;
       transition: transform 0.3s ease, opacity 0.3s ease;
       cursor: pointer;
       opacity: 0;
       transform: translateY(30px);
     }
 
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .project .icon {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #ddd;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
     .project h3 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
 
     .project p {
       font-size: 0.95rem;
       color: #666;
-    }
-
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     }
 
     footer {
@@ -143,6 +151,19 @@
     .reveal {
       opacity: 1 !important;
       transform: translateY(0) !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -168,42 +189,51 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="projects-grid">
-        <!-- Repeat this project card 9 times -->
-        <a href="https://example.com/project1" class="project" target="_blank">
-          <h3>Project 1</h3>
-          <p>Short description of project 1.</p>
+        <!-- 9 placeholder projects -->
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project2" class="project" target="_blank">
-          <h3>Project 2</h3>
-          <p>Short description of project 2.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project3" class="project" target="_blank">
-          <h3>Project 3</h3>
-          <p>Short description of project 3.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project4" class="project" target="_blank">
-          <h3>Project 4</h3>
-          <p>Short description of project 4.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project5" class="project" target="_blank">
-          <h3>Project 5</h3>
-          <p>Short description of project 5.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project6" class="project" target="_blank">
-          <h3>Project 6</h3>
-          <p>Short description of project 6.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project7" class="project" target="_blank">
-          <h3>Project 7</h3>
-          <p>Short description of project 7.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project8" class="project" target="_blank">
-          <h3>Project 8</h3>
-          <p>Short description of project 8.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
-        <a href="https://example.com/project9" class="project" target="_blank">
-          <h3>Project 9</h3>
-          <p>Short description of project 9.</p>
+        <a href="#" class="project" target="_blank">
+          <div class="icon"></div>
+          <h3>Coming Soon</h3>
+          <p>Coming Soon</p>
         </a>
       </div>
     </section>
@@ -219,7 +249,6 @@
   </footer>
 
   <script>
-    // Scroll-based animation logic
     const projects = document.querySelectorAll('.project');
 
     function revealOnScroll() {
@@ -227,7 +256,6 @@
 
       projects.forEach(project => {
         const projectTop = project.getBoundingClientRect().top;
-
         if (projectTop < triggerBottom) {
           project.classList.add('reveal');
         }
