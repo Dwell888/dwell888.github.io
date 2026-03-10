@@ -184,7 +184,7 @@ a:hover {
 <!-- Feedback -->
 <div class="feedback">
 <h3>Feedback</h3>
-<textarea id="feedbackText" placeholder="Send feedback..."></textarea>
+<textarea id="feedbackText" placeholder="Send game suggestions/feedback..."></textarea>
 <button onclick="sendFeedback()">Send</button>
 <div class="status" id="status"></div>
 </div>
@@ -199,7 +199,7 @@ function sendFeedback() {
 const text = document.getElementById("feedbackText").value;
 
 if(!text){
-document.getElementById("status").innerText = "Please enter feedback/game suggestions.";
+document.getElementById("status").innerText = "Please enter game suggestions/feedback.";
 return;
 }
 
