@@ -189,7 +189,7 @@ a:hover {
 <div class="status" id="status"></div>
 </div>
 
-<div class="version">v1.16 3/10/26</div>
+<div class="version">v1.18 3/10/26</div>
 
 <script>
 
@@ -199,7 +199,7 @@ function sendFeedback() {
 const text = document.getElementById("feedbackText").value;
 
 if(!text){
-document.getElementById("status").innerText = "Please enter feedback.";
+document.getElementById("status").innerText = "Please enter feedback/game suggestions.";
 return;
 }
 
@@ -209,7 +209,7 @@ headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-content:"New Feedback:\n"+text
+content:"New Feedback/Game Suggestions:\n"+text
 })
 })
 .then(()=>{
