@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>TCG List Hub</title>
 
+
 <style>
 body {
     font-family: Arial;
@@ -148,7 +149,8 @@ button:hover {
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+const params = new URLSearchParams(window.location.search);
+const listId = params.get("id");
 const firebaseConfig = {
   apiKey: "AIzaSyAaFkHXa2y69iFCgAB5i7-cY3teQCn2SHI",
   authDomain: "tcglists.firebaseapp.com",
@@ -163,6 +165,17 @@ const db = getFirestore(app);
 let lists = [];
 
 async function loadLists() {
+    if (listId) {
+        const docSnap = await getDoc(doc(db, "lists", listId));
+
+        if (docSnap.exists()) {
+            const list = { id: docSnap.id, ...docSnap.data() };
+            lists = [list];
+            openList(0);
+            return;
+        }
+    }
+
     const snapshot = await getDocs(collection(db, "lists"));
     lists = snapshot.docs.map(doc => ({
         id: doc.id,
@@ -171,7 +184,6 @@ async function loadLists() {
 
     renderHome();
 }
-
 loadLists();
 
 let currentListData = null;
