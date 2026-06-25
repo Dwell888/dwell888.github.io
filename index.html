@@ -145,61 +145,42 @@ button:hover {
 
 <div id="home" class="container"></div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* 🔥 IMAGE LOADER (HIGH → LOW RES) */
-function getHighResImage(baseUrl) {
-    const sizes = [1000, 800, 600, 400, 200];
+const firebaseConfig = {
+  apiKey: "AIzaSyAaFkHXa2y69iFCgAB5i7-cY3teQCn2SHI",
+  authDomain: "tcglists.firebaseapp.com",
+  projectId: "tcglists"
+};
 
-    let index = 0;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    return new Promise(resolve => {
-        function tryNext() {
-            if (index >= sizes.length) return resolve(baseUrl);
+// ⬇️ EVERYTHING ELSE YOU ALREADY HAVE GOES BELOW ⬇️
 
-            const url = baseUrl.replace(/_\d+x\d+/, `_${sizes[index]}x${sizes[index]}`);
+let lists = [];
 
-            const img = new Image();
-            img.onload = () => resolve(url);
-            img.onerror = () => {
-                index++;
-                tryNext();
-            };
+async function loadLists() {
+    const snapshot = await getDocs(collection(db, "lists"));
+    lists = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
 
-            img.src = url;
-        }
-
-        tryNext();
-    });
+    renderHome();
 }
 
-let lists = [
-{
-    title: "Electric Deck",
-    author: "Player1",
-    cards: [
-        {
-            name: "Manectric EX",
-            set: "PHF",
-            number: "113/119",
-            image: "https://tcgplayer-cdn.tcgplayer.com/product/91526_in_400x400.jpg",
-            link: "#",
-            qty: 2
-        },
-        {
-            name: "Stakataka GX",
-            set: "CES",
-            number: "102/168",
-            image: "https://tcgplayer-cdn.tcgplayer.com/product/169884_in_400x400.jpg",
-            link: "#",
-            qty: 1
-        }
-    ]
-}
-];
+loadLists();
 
 let currentListData = null;
 let editMode = false;
+
+async function saveList(list) {
+    await addDoc(collection(db, "lists"), list);
+    loadLists(); // refresh
+}
 
 /* HOME */
 function renderHome() {
